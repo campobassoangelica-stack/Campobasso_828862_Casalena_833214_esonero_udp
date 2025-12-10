@@ -1,4 +1,5 @@
 /*
+<<<<<<< HEAD
  * server.c
  *
  * UDP Server - Esonero Reti di Calcolatori
@@ -18,10 +19,30 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+=======
+ * main.c
+ *
+ * UDP Server - Template for Computer Networks assignment
+ *
+ * This file contains the boilerplate code for a UDP server
+ * portable across Windows, Linux, and macOS.
+ */
+
+#if defined WIN32
+#include <winsock.h>
+#else
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+>>>>>>> e2c86cd1c160ab08f8d5804cb372292b1bb5a4a6
 #include <netdb.h>
 #define closesocket close
 #endif
 
+<<<<<<< HEAD
 #include "protocol.h"
 
 // Lista città supportate
@@ -227,3 +248,47 @@ int main(int argc, char *argv[]) {
     clearwinsock();
     return 0;
 }
+=======
+#include <stdio.h>
+#include <stdlib.h>
+#include "protocol.h"
+
+#define NO_ERROR 0
+
+void clearwinsock() {
+#if defined WIN32
+	WSACleanup();
+#endif
+}
+
+int main(int argc, char *argv[]) {
+
+	// TODO: Implement server logic
+
+#if defined WIN32
+	// Initialize Winsock
+	WSADATA wsa_data;
+	int result = WSAStartup(MAKEWORD(2,2), &wsa_data);
+	if (result != NO_ERROR) {
+		printf("Error at WSAStartup()\n");
+		return 0;
+	}
+#endif
+
+	int my_socket;
+
+	// TODO: Create UDP socket
+
+	// TODO: Configure server address
+	
+	// TODO: Bind socket
+
+	// TODO: Implement UDP datagram reception loop 
+
+	printf("Server terminated.\n");
+
+	closesocket(my_socket);
+	clearwinsock();
+	return 0;
+} // main end
+>>>>>>> e2c86cd1c160ab08f8d5804cb372292b1bb5a4a6
